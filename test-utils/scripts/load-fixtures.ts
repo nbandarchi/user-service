@@ -10,6 +10,7 @@ async function main() {
     switch (command) {
       case 'load':
         console.log('Loading fixtures...');
+        await clearFixtures(fixtureNames);
         await loadFixtures(fixtureNames);
         console.log('Fixtures loaded successfully');
         break;
