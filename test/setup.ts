@@ -13,40 +13,40 @@ const TEST_FIXTURES = ['user'];
 
 // Setup test environment
 beforeAll(async () => {
-  console.log('Setting up test environment...');
-  
-  try {
-    // Clear any existing test data first
-    await clearFixtures(TEST_FIXTURES);
-    
-    // Load all test fixtures
-    await loadFixtures(TEST_FIXTURES);
-    console.log('✅ Test fixtures loaded successfully');
-  } catch (error) {
-    console.error('❌ Failed to set up test fixtures');
-    console.error(error);
-    throw error;
-  }
+	console.log('Setting up test environment...');
+
+	try {
+		// Clear any existing test data first
+		await clearFixtures(TEST_FIXTURES);
+
+		// Load all test fixtures
+		await loadFixtures(TEST_FIXTURES);
+		console.log('✅ Test fixtures loaded successfully');
+	} catch (error) {
+		console.error('❌ Failed to set up test fixtures');
+		console.error(error);
+		throw error;
+	}
 });
 
 // Clean up after all tests
 afterAll(async () => {
-  console.log('Tearing down test environment...');
-  try {
-    await clearFixtures(TEST_FIXTURES);
-  } catch (error) {
-    console.error('Error during test teardown:', error);
-  }
+	console.log('Tearing down test environment...');
+	try {
+		await clearFixtures(TEST_FIXTURES);
+	} catch (error) {
+		console.error('Error during test teardown:', error);
+	}
 });
 
 // Helper function to reset the test database
 export async function resetTestDatabase() {
-  try {
-    await clearFixtures(TEST_FIXTURES);
-    await loadFixtures(TEST_FIXTURES);
-  } catch (error) {
-    console.error('Error resetting test database:', error);
-    throw error;
-  }
-  // Example: await execAsync('npm run db:reset');
+	try {
+		await clearFixtures(TEST_FIXTURES);
+		await loadFixtures(TEST_FIXTURES);
+	} catch (error) {
+		console.error('Error resetting test database:', error);
+		throw error;
+	}
+	// Example: await execAsync('npm run db:reset');
 }

@@ -9,7 +9,8 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 - **Language**: TypeScript
 - **Database**: PostgreSQL
 - **ORM**: Drizzle ORM
-- **API**: RESTful
+- **API Framework**: Fastify
+- **API Style**: RESTful
 
 ### Development Tools
 - **Testing**: Vitest
@@ -19,8 +20,11 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 - **CI/CD**: GitHub Actions
 
 ### Key Dependencies
-- `express`: Web framework
+- `fastify`: High-performance web framework
+- `@fastify/swagger`: OpenAPI documentation
+- `@fastify/type-provider-typebox`: TypeScript integration
 - `drizzle-orm`: Type-safe SQL query builder
+- `drizzle-zod`: Zod schema integration with Drizzle
 - `zod`: Schema validation
 - `dotenv`: Environment variable management
 - `vitest`: Testing framework
@@ -33,7 +37,14 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 │   ├── db/                 # Database configuration and schema
 │   ├── routes/
 │   │   └── user/          # User-related routes and services
-│   └── test-utils/         # Testing utilities and fixtures
+│   │       ├── tests/     # Route and service tests
+│   │       ├── user.routes.ts  # Fastify route definitions
+│   │       ├── user.schema.ts  # Data models and validation
+│   │       └── user.service.ts # Business logic
+│   ├── server.ts          # Fastify server configuration
+│   ├── index.ts           # Application entry point
+│   └── utils/             # Utility functions and helpers
+│   └── test-utils/        # Testing utilities and fixtures
 ├── test/
 │   └── setup.ts           # Test environment setup
 ├── .env                    # Environment variables
@@ -67,18 +78,22 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 The service currently provides:
 - User creation, retrieval, update, and deletion
 - Authentication via Auth0
-- Input validation
-- Comprehensive test coverage
-- Type-safe database operations
+- Input validation with Zod schemas
+- Fastify route implementation with TypeBox schema validation
+- API documentation with Swagger/OpenAPI
+- Health check endpoint
+- Comprehensive test coverage for services and routes
+- Type-safe database operations with Drizzle ORM
 
 ## Next Steps
 
 ### Short-term
-- [ ] Add API documentation with Swagger/OpenAPI
+- [x] Add API documentation with Swagger/OpenAPI
 - [ ] Implement rate limiting
-- [ ] Add request validation middleware
-- [ ] Set up logging and monitoring
-- [ ] Add health check endpoints
+- [x] Add request validation using Fastify schemas
+- [x] Set up logging with Fastify's built-in logger
+- [x] Add health check endpoints
+- [ ] Implement generic base service for CRUD operations
 
 ### Medium-term
 - [ ] Implement user roles and permissions

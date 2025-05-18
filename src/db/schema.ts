@@ -2,7 +2,7 @@ import { users } from '../routes/user/user.schema';
 
 // Export all schemas
 export const schema = {
-  users,
+	users,
 };
 
 // Export types
