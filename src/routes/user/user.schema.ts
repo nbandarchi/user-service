@@ -2,11 +2,12 @@ import { pgTable, text, jsonb, uuid, index, timestamp } from 'drizzle-orm/pg-cor
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 import { z } from 'zod'
 
-// Type for the user metadata
-export type UserMetadata = {
-    facilities: string[]
-    defaultFacility: string
-}
+const metadataSchema = z.object({
+    facilities: z.array(z.string()).min(1, { message: 'Facilities are required' }),
+    defaultFacility: z.string().min(1, { message: 'Default facility is required' }),
+})
+
+export type UserMetadata = z.infer<typeof metadataSchema>
 
 export const users = pgTable(
     'users',
@@ -26,14 +27,13 @@ export type NewUser = typeof users.$inferInsert
 // Schema for creating a new user
 export const insertUserSchema = createInsertSchema(users, {
     auth0Id: z.string().min(1, { message: 'Auth0 ID is required' }),
-    metadata: z.object({
-        facilities: z.array(z.string().min(1, { message: 'Facility ID cannot be empty' })),
-        defaultFacility: z.string().min(1, { message: 'Default facility is required' }),
-    }),
+    metadata: metadataSchema,
 })
 
 // Schema for selecting a user
-export const selectUserSchema = createSelectSchema(users)
+export const selectUserSchema = createSelectSchema(users, {
+    metadata: metadataSchema,
+})
 
 // Schema for updating a user
 export const updateUserSchema = insertUserSchema.partial()
