@@ -4,6 +4,7 @@ import swagger from '@fastify/swagger'
 import swaggerUi from '@fastify/swagger-ui'
 import type { TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
 import { userRoutes } from './routes/user/user.routes'
+import servicesPlugin from './plugins/services'
 
 export function buildServer(): FastifyInstance {
     const server = Fastify({
@@ -17,6 +18,8 @@ export function buildServer(): FastifyInstance {
         origin: true, // Allow all origins in development
         credentials: true,
     })
+
+    server.register(servicesPlugin)
 
     // Register Swagger
     server.register(swagger, {
@@ -40,7 +43,7 @@ export function buildServer(): FastifyInstance {
     })
 
     // Register routes
-    server.register(userRoutes, { prefix: '/api/users' })
+    server.register(userRoutes, { prefix: '/api' })
 
     // Health check route
     server.get('/health', async () => {

@@ -24,7 +24,19 @@
             "recommended": true,
             "style": {
                 "useConsistentArrayType": "error",
-                "useNamingConvention": "error"
+                "useNamingConvention": {
+                    "level": "error",
+                    "options": {
+                        "conventions": [
+                            {
+                                "selector": {
+                                    "kind": "typeParameter"
+                                },
+                                "match": "[A-Z][A-Za-z0-9]*"
+                            }
+                        ]
+                    }
+                }
             },
             "suspicious": {
                 "noExplicitAny": "warn"

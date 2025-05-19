@@ -35,6 +35,12 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 .
 ├── src/
 │   ├── db/                 # Database configuration and schema
+│   ├── lib/                # Core library code
+│   │   ├── base-service.ts # Generic CRUD service implementation
+│   │   ├── base-fixture.ts # Base test fixture implementation
+│   │   ├── route-helper.ts # Type-safe route registration utilities
+│   │   └── schema-builder.ts # API schema generation utilities
+│   ├── plugins/            # Fastify plugins
 │   ├── routes/
 │   │   └── user/          # User-related routes and services
 │   │       ├── tests/     # Route and service tests
@@ -43,7 +49,6 @@ A robust user management microservice built with Node.js, TypeScript, and Postgr
 │   │       └── user.service.ts # Business logic
 │   ├── server.ts          # Fastify server configuration
 │   ├── index.ts           # Application entry point
-│   └── utils/             # Utility functions and helpers
 │   └── test-utils/        # Testing utilities and fixtures
 ├── test/
 │   └── setup.ts           # Test environment setup
@@ -86,6 +91,9 @@ The service currently provides:
 - Type-safe database operations with Drizzle ORM
 - Type-safe test fixtures with BaseFixture system
 - Code quality enforcement with Biome
+- Generic base service for common CRUD operations
+- Type-safe route registration helpers
+- Schema builder for consistent API schema definitions
 
 ## Next Steps
 
@@ -95,7 +103,9 @@ The service currently provides:
 - [x] Add request validation using Fastify schemas
 - [x] Set up logging with Fastify's built-in logger
 - [x] Add health check endpoints
-- [ ] Implement generic base service for CRUD operations
+- [x] Implement generic base service for CRUD operations
+- [x] Create route helper for type-safe route registration
+- [x] Implement schema builder for consistent API schemas
 
 ### Medium-term
 - [ ] Implement user roles and permissions
@@ -159,7 +169,3 @@ The project uses a type-safe fixture system for tests:
 - `fixture-loader.ts` provides utilities to load and clear fixtures for tests
 
 This approach ensures type safety throughout the testing process and makes it easy to maintain test data.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

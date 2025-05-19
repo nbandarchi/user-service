@@ -4,6 +4,13 @@ A modern, type-safe user management service built with Node.js, TypeScript, and 
 
 ## 🚀 Getting Started
 
+### Key Features
+
+- **Type-Safe CRUD Operations** with the generic `BaseService` class
+- **Simplified Route Registration** with type-safe route helpers
+- **Consistent API Schemas** with the schema builder utility
+- **Comprehensive Test Coverage** with Vitest and type-safe fixtures
+
 ### Prerequisites
 
 - Node.js 18 or later
@@ -53,6 +60,15 @@ A modern, type-safe user management service built with Node.js, TypeScript, and 
 
 ## 🛠 Development
 
+### Architecture
+
+This service follows a layered architecture pattern:
+
+1. **Routes Layer** - HTTP endpoints using Fastify with type-safe route registration
+2. **Service Layer** - Business logic implemented with the `BaseService` for common CRUD operations
+3. **Data Layer** - Database access using Drizzle ORM for type-safe queries
+4. **Schema Layer** - Data validation using Zod with the `SchemaBuilder` for consistent API schemas
+
 ### Available Scripts
 
 - `npm run dev` - Start development server
@@ -69,6 +85,11 @@ A modern, type-safe user management service built with Node.js, TypeScript, and 
 .
 ├── src/                    # Source code
 │   ├── db/                # Database configuration and migrations
+│   ├── lib/               # Core library code
+│   │   ├── base-service.ts # Generic CRUD service implementation
+│   │   ├── route-helper.ts # Type-safe route registration
+│   │   └── schema-builder.ts # API schema generation utilities
+│   ├── plugins/           # Fastify plugins
 │   ├── routes/            # API routes
 │   └── test-utils/        # Testing utilities
 ├── test/                  # Test files
@@ -82,29 +103,3 @@ Once the server is running, you can access:
 
 - **API Documentation**: `http://localhost:3000/api-docs` (Swagger UI)
 - **Health Check**: `http://localhost:3000/health`
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with TypeScript and Node.js
-- Uses Drizzle ORM for type-safe database operations
-- Tested with Vitest
-- Containerized with Docker
-
----
-
-<div align="center">
-  <p>Made with ❤️ by Your Team Name</p>
-  <p>✨ Happy Coding!</p>
-</div>

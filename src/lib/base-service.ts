@@ -24,7 +24,7 @@ export abstract class BaseService<
         return this.db.select().from(this.table as AnyPgTable)
     }
 
-    public async getById(id: Uuid): Promise<SelectModel<T> | null> {
+    public async getById(id: string): Promise<SelectModel<T> | null> {
         const [row] = await this.db
             .select()
             .from(this.table as AnyPgTable)
